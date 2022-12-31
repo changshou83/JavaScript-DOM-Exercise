@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: "Helvetiva", "Arial", serif;
+        color: #333;
+        background-color: #ccc;
+        margin: 1em 10%;
+      }
+      h1 {
+        color: #333;
+        background-color: transparent;
+      }
+      a {
+        background-color: transparent;
+        text-decoration: none;
+      }
+      img {
+        display: block;
+        clear: both;
+      }
+      .image-gallery {
+        padding: 0;
+        list-style: none;
+      }
+      .image-gallery li {
+        float: left;
+        padding: 1em;
+        display: inline;
+      }
+      .image-gallery li a img {
+        border: 0;
+        height: 100px;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Snapshots</h1>
+    <ul class="image-gallery">
+      <li>
+        <a href="images/fireworks.jpeg" title="A fireworks display">
+          <img src="images/fireworks.jpeg" alt="Fireworks" />
+        </a>
+      </li>
+      <li>
+        <a href="images/coffee.jpeg" title="A cup of black coffee">
+          <img src="images/coffee.jpeg" alt="Coffee" />
+        </a>
+      </li>
+      <li>
+        <a href="images/rose.jpeg" title="A red, red rose">
+          <img src="images/rose.jpeg" alt="Rose" />
+        </a>
+      </li>
+      <li>
+        <a href="images/greatwall.jpeg" title="The famous Wall">
+          <img src="images/greatwall.jpeg" alt="Great Wall" />
+        </a>
+      </li>
+    </ul>
+    <script src="../scripts/addLoadEvent.js"></script>
+    <script src="../scripts/insertAfter.js"></script>
+    <script>
+      addLoadEvent(preparePlaceholder);
+      addLoadEvent(prepareGallery);
+      function preparePlaceholder() {
+        if (
+          !document.querySelector ||
+          !document.createElement ||
+          !document.createTextNode
+        )
+          return false;
+
+        const placeholder = document.createElement("img");
+        placeholder.setAttribute("id", "placeholder");
+        placeholder.setAttribute("src", "images/placeholder.png");
+        placeholder.setAttribute("alt", "my image gallery");
+        const description = document.createElement("p");
+        description.setAttribute("id", "description");
+        const descText = document.createTextNode("Choose an image.");
+        description.appendChild(descText);
+        const gallery = document.querySelector(".image-gallery");
+        if (gallery) {
+          insertAfter(placeholder, gallery);
+          insertAfter(description, placeholder);
+        }
+      }
+      function prepareGallery() {
+        if (!document.querySelector || !document.querySelectorAll) return false;
+
+        const gallery = document.querySelector(".image-gallery");
+        if (gallery) {
+          const list = gallery.querySelectorAll("a");
+          for (const item of list) {
+            const fn = (event) => {
+              showPic(item) && event.preventDefault();
+            };
+            item.addEventListener("click", fn);
+            item.addEventListener("keypress", fn);
+          }
+        }
+      }
+      function showPic(whichpic) {
+        const placeholder = document.querySelector("#placeholder");
+        const description = document.querySelector("#description");
+        if (!placeholder || placeholder.nodeName !== "IMG") return false;
+        if (!description || description.firstChild.nodeType !== 3) return false;
+
+        placeholder.setAttribute("src", whichpic.getAttribute("href"));
+        const text = whichpic.getAttribute("title")
+          ? whichpic.getAttribute("title")
+          : "";
+        description.firstChild.nodeValue = text;
+        return true;
+      }
+    </script>
+  </body>
+</html>

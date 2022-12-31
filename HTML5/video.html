@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Video</title>
+    <link rel="stylesheet" href="./styles/player.css" />
+  </head>
+  <body>
+    <div class="video_wrapper">
+      <video id="movie" controls>
+        <source src="./assets/movie.mp4" />
+        <source
+          src="./assets/movie.webm"
+          type="video/webm;codesc='vp8, vorbis'"
+        />
+        <source
+          src="./assets/movie.ogv"
+          type="video/ogv;codecs='theora, vorbis'"
+        />
+        <p>
+          Download movie as
+          <a href="./assets/movie.mp4">MP4</a>,
+          <a href="./assets/movie.webm">WebM</a>, or
+          <a href="./assets/movie.ogv">Ogg</a>
+        </p>
+      </video>
+    </div>
+    <script src="./scripts/player.js"></script>
+  </body>
+</html>

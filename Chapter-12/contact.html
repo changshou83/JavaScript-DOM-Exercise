@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jay Skript And The Domsters: Contact the band</title>
+    <link rel="stylesheet" href="./styles/basic.css" />
+  </head>
+  <body>
+    <header>
+      <img src="./images/logo.gif" alt="Jay Skript and the Domsters" />
+      <nav>
+        <ul>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./about.html">About</a></li>
+          <li><a href="./photos.html">Photos</a></li>
+          <li><a href="./live.html">Live</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <article>
+      <h1>Contact the band</h1>
+      <form method="post" action="submit.html">
+        <fieldset>
+          <p>
+            <label for="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Your name"
+              required="required"
+              error-msg="Please fill in the name field."
+            />
+          </p>
+          <p>
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Your email address"
+              required="required"
+              error-msg="Please enter a valid email address"
+            />
+          </p>
+          <p>
+            <label for="message">Message:</label>
+            <textarea
+              cols="45"
+              rows="7"
+              id="message"
+              name="message"
+              required="required"
+              placeholder="Write your message here."
+            ></textarea>
+          </p>
+          <input type="submit" value="Send" />
+        </fieldset>
+      </form>
+    </article>
+    <script src="../scripts/addLoadEvent.js"></script>
+    <script src="./scripts/ajax.js"></script>
+    <script src="./scripts/contact.js"></script>
+    <script src="./scripts/global.js"></script>
+  </body>
+</html>
